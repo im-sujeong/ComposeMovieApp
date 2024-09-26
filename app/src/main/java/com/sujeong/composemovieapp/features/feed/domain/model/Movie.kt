@@ -1,4 +1,4 @@
-package com.sujeong.composemovieapp.features.common.domain.model
+package com.sujeong.composemovieapp.features.feed.domain.model
 
 data class Movie(
     val id: Int,

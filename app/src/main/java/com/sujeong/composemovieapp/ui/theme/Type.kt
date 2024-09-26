@@ -66,9 +66,19 @@ val Typography = Typography(
     )
 )
 
-val Typography.bodyMediumContents: TextStyle
+val Typography.bodyMediumLineHeight30: TextStyle
     @Composable get() = bodyMedium.copy(
         lineHeight = 30.sp
+    )
+
+val Typography.bodyLargeLineHeight20: TextStyle
+    @Composable get() = bodyLarge.copy(
+        lineHeight = 20.sp
+    )
+
+val Typography.labelSmallProminent: TextStyle
+    @Composable get() = labelSmall.copy(
+        fontWeight = FontWeight.Medium
     )
 
 val Typography.button: TextStyle

@@ -1,4 +1,4 @@
-package com.sujeong.composemovieapp.ui.components.movie
+package com.sujeong.composemovieapp.ui.components.movie.feed
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.sujeong.composemovieapp.R
 import com.sujeong.composemovieapp.features.feed.domain.model.FeedMovie
 import com.sujeong.composemovieapp.features.feed.presentation.input.FeedViewModelInput
@@ -32,18 +31,20 @@ fun CategoryRow(
     modifier: Modifier = Modifier,
     input: FeedViewModelInput? = null
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         CategoryTitle(
             title = stringResource(
-                feedMovie.genre.genreTitleRes
+                feedMovie.feedMovieType.title
             )
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(Paddings.padding12))
 
         LazyRow(
             contentPadding = PaddingValues(
-                horizontal = Paddings.padding24
+                horizontal = Paddings.padding20
             ),
             horizontalArrangement = Arrangement.spacedBy(Paddings.padding12)
         ) {

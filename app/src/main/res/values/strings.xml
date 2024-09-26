@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ComposeMovieApp</string>
+    <string name="app_name">Movies</string>
     <string name="genre_action">액션</string>
     <string name="genre_adventure">모험</string>
     <string name="genre_animation">애니메이션</string>
@@ -14,4 +14,21 @@
     <string name="app_info_dialog_title">앱정보</string>
     <string name="app_info_dialog_body">TMDB(themoviedb) API를 사용하여 간단한 영화 정보를 제공하는 앱입니다.</string>
     <string name="confirm">확인</string>
+    <string name="movie_release_year">개봉</string>
+    <string name="movie_runtime">상영시간</string>
+    <string name="movie_certification">관람등급</string>
+    <string name="movie_overview">줄거리</string>
+    <string name="add_rating">이 영화 평가하기</string>
+    <string name="movie_runtime_format">%d시간 %02d분</string>
+    <string name="movie_cast">출연진</string>
+    <string name="feed_movie_popular">인기</string>
+    <string name="feed_movie_top_rated">높은 평점</string>
+    <string name="feed_movie_upcoming">개봉 예정작</string>
+    <string name="feed_movie_now_playing">현재 상영작</string>
+    <string name="movie_certification_all">전체관람가</string>
+    <string name="movie_certification_12">12세관람가</string>
+    <string name="movie_certification_15">15세관람가</string>
+    <string name="movie_certification_19">청소년관람불가</string>
+    <string name="movie_rating_dialog_title">영화 평가</string>
+    <string name="cancel">취소</string>
 </resources>

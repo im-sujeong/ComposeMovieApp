@@ -4,3 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data object AppInfoDialogRoute
+
+@Serializable
+data class MovieRatingDialogRoute(
+    val movieId: Int
+)

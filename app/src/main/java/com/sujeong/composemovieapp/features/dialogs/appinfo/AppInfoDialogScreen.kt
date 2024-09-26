@@ -1,8 +1,6 @@
-package com.sujeong.composemovieapp.features.dialogs
+package com.sujeong.composemovieapp.features.dialogs.appinfo
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.window.Dialog
-import androidx.navigation.NavController
 import com.sujeong.composemovieapp.R
 import com.sujeong.composemovieapp.ui.components.dialog.AlertDialog
 import com.sujeong.composemovieapp.ui.components.dialog.DialogPopup

@@ -14,7 +14,7 @@ import com.sujeong.composemovieapp.ui.components.RatingBar
 import com.sujeong.composemovieapp.ui.model.DialogContentType
 import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
 import com.sujeong.composemovieapp.ui.theme.Paddings
-import com.sujeong.composemovieapp.ui.theme.bodyMediumContents
+import com.sujeong.composemovieapp.ui.theme.bodyMediumLineHeight30
 
 @Composable
 fun DialogContent(
@@ -39,7 +39,8 @@ fun DialogContent(
                     text = dialogContentType.textId?.let {
                         stringResource(id = it)
                     } ?: dialogContentType.text,
-                    style = MaterialTheme.typography.bodyMediumContents
+                    style = MaterialTheme.typography.bodyMediumLineHeight30,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }

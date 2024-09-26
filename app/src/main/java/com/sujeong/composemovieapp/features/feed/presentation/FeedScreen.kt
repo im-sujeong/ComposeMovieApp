@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,13 +30,14 @@ import androidx.compose.ui.unit.dp
 import com.sujeong.composemovieapp.R
 import com.sujeong.composemovieapp.features.feed.presentation.input.FeedViewModelInput
 import com.sujeong.composemovieapp.features.feed.presentation.output.FeedUiEffect
-import com.sujeong.composemovieapp.ui.components.movie.CategoryRow
+import com.sujeong.composemovieapp.ui.components.movie.feed.CategoryRow
 import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
 import com.sujeong.composemovieapp.ui.theme.Paddings
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun FeedScreen(
+    onChangeTheme: () -> Unit,
     onNavigationToMovieDetail: (movieId: Int) -> Unit,
     onNavigationToAppInfoDialog: () -> Unit,
     viewModel: FeedViewModel = hiltViewModel(),
@@ -53,39 +55,47 @@ fun FeedScreen(
                 FeedUiEffect.OpenAppInfoDialog -> {
                     onNavigationToAppInfoDialog()
                 }
+
+                FeedUiEffect.ChangeTheme -> onChangeTheme()
             }
         }
     }
 
-    Column {
-        TopAppBar(input)
-
-        if(state.isLoading) {
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-        }
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentPadding = PaddingValues(vertical = Paddings.padding16),
-            verticalArrangement = Arrangement.spacedBy(Paddings.padding36)
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier.padding(innerPadding)
         ) {
-            items(
-                state.feedMovies,
-                key = { feedMovie ->
-                    feedMovie.genre.genreId
+            TopAppBar(input)
+
+            if(state.isLoading) {
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
                 }
-            ) { feedMovie ->
-                CategoryRow(
-                    feedMovie = feedMovie,
-                    input = input
-                )
+            }
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentPadding = PaddingValues(vertical = Paddings.padding16),
+                verticalArrangement = Arrangement.spacedBy(Paddings.padding36)
+            ) {
+                items(
+                    state.feedMovies,
+                    key = { feedMovie ->
+                        feedMovie.feedMovieType
+                    }
+                ) { feedMovie ->
+                    CategoryRow(
+                        feedMovie = feedMovie,
+                        input = input
+                    )
+                }
             }
         }
     }
@@ -116,7 +126,7 @@ fun TopAppBar(
             IconButton(
                 modifier = Modifier.size(40.dp),
                 onClick = {
-
+                    input?.changeTheme()
                 }
             ) {
                 Icon(

@@ -11,10 +11,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class FeedProvideModule {
+class ProvideModule {
     @Provides
     @Singleton
-    fun provideMoviesApi(
+    fun provideMovieApi(
         retrofit: Retrofit
     ): MovieApi {
         return retrofit.create()

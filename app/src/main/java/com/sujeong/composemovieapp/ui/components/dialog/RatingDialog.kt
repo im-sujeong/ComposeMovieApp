@@ -7,7 +7,7 @@ import com.sujeong.composemovieapp.ui.model.DialogContentType
 @Composable
 fun DialogPopup.RatingDialog(
     title: String,
-    rating: Float,
+    rating: Float = 5f,
     negativeButtonText: String? = null,
     onNegativeButtonClick: (() -> Unit) = {},
     positiveButtonText: String,

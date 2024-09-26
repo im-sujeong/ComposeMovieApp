@@ -1,7 +1,7 @@
 package com.sujeong.composemovieapp.ui.components.movie.sample
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.sujeong.composemovieapp.features.common.domain.model.Movie
+import com.sujeong.composemovieapp.features.feed.domain.model.Movie
 
 class MovieSampleProvider: PreviewParameterProvider<Movie> {
     override val values: Sequence<Movie>

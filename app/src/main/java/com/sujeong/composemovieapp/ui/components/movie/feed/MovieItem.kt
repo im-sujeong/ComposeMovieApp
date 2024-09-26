@@ -1,4 +1,4 @@
-package com.sujeong.composemovieapp.ui.components.movie
+package com.sujeong.composemovieapp.ui.components.movie.feed
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -28,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.sujeong.composemovieapp.R
-import com.sujeong.composemovieapp.features.common.domain.model.Movie
+import com.sujeong.composemovieapp.features.feed.domain.model.Movie
 import com.sujeong.composemovieapp.features.feed.presentation.input.FeedViewModelInput
 import com.sujeong.composemovieapp.ui.components.movie.sample.MovieSampleProvider
 import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
@@ -49,7 +50,12 @@ fun MovieItem(
                 input?.openDetail(movie.id)
             }
     ) {
-        Poster(movie.poster)
+        Poster(
+            posterUrl = movie.poster,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(160.dp)
+        )
 
         Text(
             text = movie.title,
@@ -59,12 +65,14 @@ fun MovieItem(
                 top = Paddings.padding8
             ),
             style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Row(
             modifier = Modifier.padding(
                 top = Paddings.padding8
-            )
+            ),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_star),
@@ -85,12 +93,11 @@ fun MovieItem(
 
 @Composable
 fun Poster(
-    posterUrl: String
+    posterUrl: String,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(160.dp),
+        modifier = modifier,
         shape = MaterialTheme.shapes.small,
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -117,7 +124,9 @@ fun Poster(
 fun MovieItemPreview(
     @PreviewParameter(MovieSampleProvider::class) movie: Movie
 ) {
-    ComposeMovieAppTheme{
+    ComposeMovieAppTheme(
+        darkTheme = true
+    ){
         MovieItem(
             movie = movie,
             modifier = Modifier.background(MaterialTheme.colorScheme.background)

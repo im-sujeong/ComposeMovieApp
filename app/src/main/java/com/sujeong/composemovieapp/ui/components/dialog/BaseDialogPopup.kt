@@ -18,7 +18,6 @@ import com.sujeong.composemovieapp.ui.model.DialogButtonType
 import com.sujeong.composemovieapp.ui.model.DialogContentType
 import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
 import com.sujeong.composemovieapp.ui.theme.Paddings
-import com.sujeong.composemovieapp.ui.theme.buttonSmall
 
 object DialogPopup
 
@@ -47,7 +46,8 @@ fun BaseDialogPopup(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(Paddings.padding24)
+                    .padding(Paddings.padding24),
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             DialogContent(dialogContentType = dialogContent)
