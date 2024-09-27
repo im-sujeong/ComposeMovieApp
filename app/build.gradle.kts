@@ -101,6 +101,9 @@ dependencies {
     implementation(libs.logging.interceptor)
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
 
+    //Paging
+    implementation(libs.androidx.paging.compose)
+
     //Timber Log
     implementation(libs.timber)
 

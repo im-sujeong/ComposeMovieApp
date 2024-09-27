@@ -17,6 +17,7 @@ composeBom = "2024.04.01"
 loggingInterceptor = "4.11.0"
 moshiKotlin = "1.15.0"
 navigationCompose = "2.8.0"
+pagingCompose = "3.3.2"
 retrofit = "2.11.0"
 timber = "5.0.1"
 
@@ -24,6 +25,7 @@ timber = "5.0.1"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }

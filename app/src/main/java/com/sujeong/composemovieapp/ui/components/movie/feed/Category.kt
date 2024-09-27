@@ -1,5 +1,6 @@
 package com.sujeong.composemovieapp.ui.components.movie.feed
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -36,9 +37,11 @@ fun CategoryRow(
     ) {
         CategoryTitle(
             title = stringResource(
-                feedMovie.feedMovieType.title
+                feedMovie.movieCategory.title
             )
-        )
+        ) {
+            input?.openMoreMovie(feedMovie.movieCategory)
+        }
 
         Spacer(modifier = Modifier.height(Paddings.padding12))
 
@@ -65,7 +68,8 @@ fun CategoryRow(
 
 @Composable
 fun CategoryTitle(
-    title: String
+    title: String,
+    onMore: () -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -82,7 +86,11 @@ fun CategoryTitle(
 
         Text(
             text = stringResource(id = R.string.more),
-            modifier = Modifier.padding(end = Paddings.padding24),
+            modifier = Modifier
+                .padding(end = Paddings.padding24)
+                .clickable {
+                    onMore()
+                },
             style = MaterialTheme.typography.labelLarge
         )
     }

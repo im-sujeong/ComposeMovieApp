@@ -4,34 +4,23 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.unit.dp
-import com.sujeong.composemovieapp.R
-import com.sujeong.composemovieapp.features.feed.presentation.input.FeedViewModelInput
+import com.sujeong.composemovieapp.features.feed.domain.model.MovieCategory
 import com.sujeong.composemovieapp.features.feed.presentation.output.FeedUiEffect
+import com.sujeong.composemovieapp.ui.components.TopAppBarForFeed
 import com.sujeong.composemovieapp.ui.components.movie.feed.CategoryRow
-import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
 import com.sujeong.composemovieapp.ui.theme.Paddings
 import kotlinx.coroutines.flow.collectLatest
 
@@ -40,6 +29,7 @@ fun FeedScreen(
     onChangeTheme: () -> Unit,
     onNavigationToMovieDetail: (movieId: Int) -> Unit,
     onNavigationToAppInfoDialog: () -> Unit,
+    onNavigationToMoreMovies: (movieCategory: MovieCategory) -> Unit,
     viewModel: FeedViewModel = hiltViewModel(),
 ) {
     val state by viewModel.feedState.collectAsStateWithLifecycle()
@@ -57,6 +47,10 @@ fun FeedScreen(
                 }
 
                 FeedUiEffect.ChangeTheme -> onChangeTheme()
+
+                is FeedUiEffect.OpenMoreMovies -> {
+                    onNavigationToMoreMovies(uiEffect.movieCategory)
+                }
             }
         }
     }
@@ -67,7 +61,9 @@ fun FeedScreen(
         Column(
             modifier = Modifier.padding(innerPadding)
         ) {
-            TopAppBar(input)
+            TopAppBarForFeed(
+                input = input
+            )
 
             if(state.isLoading) {
                 Box(
@@ -88,7 +84,7 @@ fun FeedScreen(
                 items(
                     state.feedMovies,
                     key = { feedMovie ->
-                        feedMovie.feedMovieType
+                        feedMovie.movieCategory
                     }
                 ) { feedMovie ->
                     CategoryRow(
@@ -98,62 +94,5 @@ fun FeedScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-fun TopAppBar(
-    input: FeedViewModelInput? = null
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp)
-    ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.ic_app_logo),
-            contentDescription = "앱 로고",
-            modifier = Modifier
-                .padding(start = Paddings.padding24)
-                .align(Alignment.CenterStart)
-        )
-
-        Row(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = Paddings.padding16)
-        ) {
-            IconButton(
-                modifier = Modifier.size(40.dp),
-                onClick = {
-                    input?.changeTheme()
-                }
-            ) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_change_theme),
-                    contentDescription = "테마 변경",
-                )
-            }
-            
-            IconButton(
-                modifier = Modifier.size(40.dp),
-                onClick = {
-                    input?.openAppInfo()
-                }
-            ) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_app_info),
-                    contentDescription = "앱 정보",
-                )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TopAppBarPreview() {
-    ComposeMovieAppTheme {
-        TopAppBar()
     }
 }

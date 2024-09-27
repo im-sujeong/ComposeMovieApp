@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.sujeong.composemovieapp.ui.theme.ComposeMovieAppTheme
 import com.sujeong.composemovieapp.ui.theme.button
 import com.sujeong.composemovieapp.ui.theme.buttonSmall
-import com.sujeong.composemovieapp.ui.theme.huge
 
 @Composable
 private fun SecondaryButton(
@@ -30,7 +29,7 @@ private fun SecondaryButton(
     Button(
         onClick = onClick,
         modifier = modifier,
-        shape = MaterialTheme.shapes.huge,
+        shape = MaterialTheme.shapes.extraLarge,
         contentPadding = PaddingValues(
             horizontal = 24.dp
         ),

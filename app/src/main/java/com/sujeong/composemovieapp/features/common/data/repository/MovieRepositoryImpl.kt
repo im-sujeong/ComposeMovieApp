@@ -1,14 +1,20 @@
 package com.sujeong.composemovieapp.features.common.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.sujeong.composemovieapp.features.common.data.mapper.toMovie
 import com.sujeong.composemovieapp.features.common.data.mapper.toMovieDetail
 import com.sujeong.composemovieapp.features.common.data.network.api.MovieApi
+import com.sujeong.composemovieapp.features.common.data.network.paging.MovieByCategoryPagingSource
 import com.sujeong.composemovieapp.features.feed.domain.model.Movie
 import com.sujeong.composemovieapp.features.common.domain.repository.MovieRepository
 import com.sujeong.composemovieapp.features.detail.domain.model.MovieDetail
+import com.sujeong.composemovieapp.features.feed.domain.model.MovieCategory
 import com.sujeong.composemovieapp.library.di.qualifiers.IoDispatcher
 import com.sujeong.composemovieapp.library.toAppError
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -56,6 +62,21 @@ class MovieRepositoryImpl @Inject constructor(
             throw e.toAppError()
         }
     }
+
+    override fun fetchMoviesByCategory(
+        movieCategory: MovieCategory
+    ): Flow<PagingData<Movie>> = Pager(
+        config = PagingConfig(
+            pageSize = 20,
+            enablePlaceholders = false
+        ),
+        pagingSourceFactory = {
+            MovieByCategoryPagingSource(
+                movieApi = movieApi,
+                movieCategory = movieCategory
+            )
+        }
+    ).flow
 
     override suspend fun fetchMovieDetail(
         movieId: Int

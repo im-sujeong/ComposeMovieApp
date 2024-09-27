@@ -13,7 +13,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.sujeong.composemovieapp.features.category.presentation.MovieByCategoryScreen
 import com.sujeong.composemovieapp.features.common.presentation.util.AppInfoDialogRoute
+import com.sujeong.composemovieapp.features.common.presentation.util.MovieByCategoryRoute
 import com.sujeong.composemovieapp.features.common.presentation.util.MovieDetailRoute
 import com.sujeong.composemovieapp.features.common.presentation.util.MovieFeedRoute
 import com.sujeong.composemovieapp.features.common.presentation.util.MovieRatingDialogRoute
@@ -58,6 +61,25 @@ class MainActivity : ComponentActivity() {
                             onNavigationToAppInfoDialog = {
                                 navController.navigate(
                                     AppInfoDialogRoute
+                                )
+                            },
+                            onNavigationToMoreMovies = { movieCategory ->
+                                navController.navigate(
+                                    MovieByCategoryRoute(movieCategory)
+                                )
+                            }
+                        )
+                    }
+
+                    composable<MovieByCategoryRoute> {
+                        MovieByCategoryScreen(
+                            category = it.toRoute<MovieByCategoryRoute>().category.title,
+                            onGoBack = {
+                                navController.navigateUp()
+                            },
+                            onNavigationToMovieDetail = { movieId ->
+                                navController.navigate(
+                                    MovieDetailRoute(movieId)
                                 )
                             }
                         )

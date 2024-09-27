@@ -8,5 +8,5 @@ data class MovieDto(
     @Json(name = "vote_average")
     val voteAverage: Float,
     @Json(name = "poster_path")
-    val poster: String
+    val poster: String?
 )

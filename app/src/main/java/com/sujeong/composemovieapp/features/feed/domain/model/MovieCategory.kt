@@ -3,7 +3,7 @@ package com.sujeong.composemovieapp.features.feed.domain.model
 import androidx.annotation.StringRes
 import com.sujeong.composemovieapp.R
 
-enum class FeedMovieType(
+enum class MovieCategory(
     @StringRes val title: Int
 ) {
     POPULAR(R.string.feed_movie_popular),

@@ -3,13 +3,13 @@ package com.sujeong.composemovieapp.ui.components.movie.sample
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.sujeong.composemovieapp.features.feed.domain.model.Movie
 import com.sujeong.composemovieapp.features.feed.domain.model.FeedMovie
-import com.sujeong.composemovieapp.features.feed.domain.model.FeedMovieType
+import com.sujeong.composemovieapp.features.feed.domain.model.MovieCategory
 
 class FeedMovieSampleProvider : PreviewParameterProvider<FeedMovie> {
     override val values: Sequence<FeedMovie>
         get() = sequenceOf(
             FeedMovie(
-                feedMovieType = FeedMovieType.POPULAR,
+                movieCategory = MovieCategory.POPULAR,
                 movies = listOf(
                     Movie(
                         id = 1,

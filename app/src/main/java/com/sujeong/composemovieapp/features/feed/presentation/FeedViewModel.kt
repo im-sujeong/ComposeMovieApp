@@ -2,6 +2,7 @@ package com.sujeong.composemovieapp.features.feed.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sujeong.composemovieapp.features.feed.domain.model.MovieCategory
 import com.sujeong.composemovieapp.features.feed.domain.usecase.FetchMovies
 import com.sujeong.composemovieapp.features.feed.presentation.input.FeedViewModelInput
 import com.sujeong.composemovieapp.features.feed.presentation.output.FeedUiEffect
@@ -93,4 +94,12 @@ class FeedViewModel @Inject constructor(
     }
 
     override fun refreshFeed() { }
+
+    override fun openMoreMovie(movieCategory: MovieCategory) {
+        viewModelScope.launch {
+            _feedUiEffect.emit(
+                FeedUiEffect.OpenMoreMovies(movieCategory)
+            )
+        }
+    }
 }

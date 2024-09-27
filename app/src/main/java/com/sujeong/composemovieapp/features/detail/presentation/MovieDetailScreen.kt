@@ -2,40 +2,33 @@ package com.sujeong.composemovieapp.features.detail.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.sujeong.composemovieapp.R
 import com.sujeong.composemovieapp.features.detail.presentation.input.MovieDetailViewModelInput
 import com.sujeong.composemovieapp.features.detail.presentation.output.MovieDetailUiEffect
+import com.sujeong.composemovieapp.ui.components.TopAppBarWithBack
+import com.sujeong.composemovieapp.ui.components.movie.BackgroundPoster
+import com.sujeong.composemovieapp.ui.components.movie.Poster
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieCast
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieGenre
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieInfo
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieOverview
-import com.sujeong.composemovieapp.ui.components.movie.detail.MoviePoster
-import com.sujeong.composemovieapp.ui.components.movie.detail.MoviePosterBackground
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieRating
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieRatingButton
 import com.sujeong.composemovieapp.ui.components.movie.detail.MovieTitle
@@ -81,7 +74,7 @@ fun MovieDetailScreen(
                         .padding(bottom = innerPadding.calculateBottomPadding())
                         .verticalScroll(rememberScrollState())
                 ) {
-                    MoviePosterBackground(
+                    BackgroundPoster(
                         posterUrl = movieDetail.poster
                     )
 
@@ -92,8 +85,12 @@ fun MovieDetailScreen(
                             ),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        MoviePoster(
-                            modifier = Modifier.padding(top = Paddings.padding60),
+                        Spacer(modifier = Modifier.height(Paddings.padding60))
+
+                        Poster(
+                            modifier = Modifier
+                                .width(180.dp)
+                                .height(240.dp),
                             posterUrl = movieDetail.poster
                         )
 
@@ -167,27 +164,12 @@ fun TopAppBar(
     modifier: Modifier = Modifier,
     input: MovieDetailViewModelInput? = null
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(60.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Spacer(modifier = Modifier.width(Paddings.padding16))
-
-        IconButton(
-            modifier = Modifier
-                .size(40.dp),
-            onClick = {
-                input?.goBack()
-            }
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_back),
-                contentDescription = "테마 변경",
-            )
+    TopAppBarWithBack(
+        modifier = modifier,
+        onBack = {
+            input?.goBack()
         }
-    }
+    )
 }
 
 @Preview(showBackground = true)
