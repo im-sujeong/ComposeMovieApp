@@ -1,3 +1,24 @@
+# Movies
+
+### 1. Movies?
+* [TMDB API](https://developer.themoviedb.org/docs/getting-started) 를 사용하여 간단한 영화 정보를 제공하는 앱.
+
+### 2. 사용 스킬
+* 언어 : **Kotlin**
+* **Jetpack Compose**
+* **Jetpack Navigation-Compose** (화면 전환)
+* **Hilt** (의존성 주입)
+* **Coroutine** (비동기 처리)
+* **Retrofit** (네트워크)
+* **Coil** (이미지 로드)
+* **Paging-Compose** (페이지네이션)
+
+### 3. 아키텍쳐
+* Clean Architecture + MVI
+
+### 4. 화면 구성
+* 라이트모드
+
 ![Light-01-영화 목록](https://github.com/user-attachments/assets/f19717b5-a26d-4340-b71e-aad5014d8259)
 
 ![Light-02-영화 목록-앱 정보](https://github.com/user-attachments/assets/5138fa2b-4ffb-4617-860c-0ea83f7205d4)
