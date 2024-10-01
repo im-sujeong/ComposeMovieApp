@@ -30,3 +30,17 @@
 ![Light-05-영화 상세-스크롤](https://github.com/user-attachments/assets/79606e72-fd8a-43c1-af90-03e0e80f5d92)
 
 ![Light-06-영화 상세-영화평가](https://github.com/user-attachments/assets/89f3f677-ee19-421f-af88-d2efc0d71cf6)
+
+* 다크모드
+
+![Dark-01-영화 목록](https://github.com/user-attachments/assets/2294bfb3-448f-4d22-877d-c795357f10bf)
+
+![Dark-02-영화 목록-앱 정보](https://github.com/user-attachments/assets/160f90d1-341e-4bdf-a26a-27103be311ea)
+
+![Dark-03-영화 목록-카테고리별](https://github.com/user-attachments/assets/dc196954-c161-4ecb-b330-d6bc3462848a)
+
+![Dark-04-영화 상세 전체](https://github.com/user-attachments/assets/50b81cbf-58fa-42a1-a098-2d0c2f99ee80)
+
+![Dark-05-영화 상세-스크롤](https://github.com/user-attachments/assets/b5c70f62-0745-4f76-a366-2bb4e83e39e5)
+
+![Dark-06-영화 상세-영화평가](https://github.com/user-attachments/assets/650bfb9e-472a-4369-b448-680c92c0eb3b)
